@@ -10,7 +10,7 @@
 
     <teleport to="body">
       <app-modal v-if="modal" @close="modal = false" title="Создать заявку">
-        <request-modal />
+        <request-modal @created="modal = false" />
       </app-modal>
     </teleport>
   </app-page>
