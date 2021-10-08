@@ -12,7 +12,7 @@
       <small v-if="pError">{{ pError }}</small>
     </div>
 
-    <div :class="{invalid: aError}" class="form-control">
+    <div :class="{ invalid: aError }" class="form-control">
       <label for="amount">Сумма</label>
       <input @blur="aBlur" id="amount" type="text" v-model.number="amount">
       <small v-if="aError">{{ aError }}</small>
@@ -34,13 +34,16 @@
 
 <script>
 import { useRequestForm } from "@/use/request-form.js";
+import { useStore } from "vuex";
 
 export default {
   name: "RequestModal",
   emits: ['created'],
   setup(_, { emit }) {
+    const store = useStore()
+
     const submit = async values => {
-      console.log(values)
+      await store.dispatch('request/create', values)
       emit('created')
     }
 
