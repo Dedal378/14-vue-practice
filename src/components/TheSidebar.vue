@@ -20,8 +20,6 @@ export default {
     const store = useStore()
     const sidebar = computed(() => { store.state.sidebar })
 
-    console.log(sidebar.value)
-
     return {
       sidebar,
       close: () => store.commit('closeSidebar')
