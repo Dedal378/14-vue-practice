@@ -13,6 +13,7 @@ export default createStore({
   state() {
     return {
       message: null,
+      sidebar: false
     }
   },
   mutations: {
@@ -22,13 +23,19 @@ export default createStore({
     clearMessage(state) {
       state.message = null
     },
+    openSidebar(state) {
+      state.sidebar = true
+    },
+    closeSidebar(state) {
+      state.sidebar = false
+    },
   },
   actions: {
     setMessage({ commit }, message) {
       commit('setMessage', message)
       setTimeout(() => {
         commit('clearMessage')
-      }, 5000)
+      }, 7000)
     },
   },
   modules: {
