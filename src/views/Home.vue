@@ -6,7 +6,7 @@
       </button>
     </template>
 
-    <RequestTable />
+    <request-table :requests="[]"></request-table>
   </app-page>
 </template>
 
