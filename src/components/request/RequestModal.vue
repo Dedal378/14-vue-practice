@@ -1,8 +1,8 @@
 <template>
   <form>
     <div class="form-control">
-      <label for="">ФИО</label>
-      <input type="text">
+      <label for="name">ФИО</label>
+      <input type="text" id="name">
     </div>
   </form>
 </template>
