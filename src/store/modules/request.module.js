@@ -9,7 +9,7 @@ export default {
     }
   },
   mutations: {
-    setRequest(state, requests) {
+    setRequests(state, requests) {
       state.requests = requests
     },
     addRequest(state, request) {
@@ -33,11 +33,23 @@ export default {
         }, { root: true })
       }
     },
+    async load({ commit, dispatch }) {
+      try {
+        const token = store.getters['auth/token']
+        const { data } = await axios.get(`/requests.json?auth=${ token }`)
+        console.log(data)
+        // commit('setRequests', {...payload, id: data.name})
+      } catch (e) {
+        dispatch('setMessage', {
+          value: e.message,
+          type: 'danger'
+        }, { root: true })
+      }
+    },
   },
   getters: {
     requests(state) {
       return state.requests
     },
   },
-
 }
