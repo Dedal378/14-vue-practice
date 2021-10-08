@@ -22,7 +22,7 @@
       <td>{{ r.amount }}</td>
       <td>{{ r.status }}</td>
       <td>
-        <router-link v-slot="{ navigate }" custom :to="{ name: 'Request', params: { id: r.id } }">
+        <router-link v-slot="{ navigate }" custom :to="{ params: { id: r.id } }">
           <button class="btn primary" @click="navigate">Открыть</button>
         </router-link>
       </td>
