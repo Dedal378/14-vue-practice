@@ -8,6 +8,8 @@
       </button>
     </template>
 
+    <request-filter v-model="filter"></request-filter>
+
     <request-table :requests="requests"></request-table>
 
     <teleport to="body">
@@ -26,24 +28,40 @@ import AppPage from '@/components/ui/AppPage.vue'
 import RequestTable from "@/components/request/RequestTable.vue";
 import AppModal from "@/components/ui/AppModal.vue";
 import RequestModal from "@/components/request/RequestModal.vue";
+import RequestFilter from "@/components/request/RequestFilter.vue";
 
 export default {
   name: 'Home',
-  components: { RequestTable, AppPage, AppModal, RequestModal, AppLoader },
+  components: { RequestTable, AppPage, AppModal, RequestModal, AppLoader, RequestFilter },
   setup() {
     const store = useStore()
     const modal = ref(false)
     const loading = ref(false)
+    const filter = ref({})
 
     onMounted(async () => {
       loading.value = true
       await store.dispatch('request/load')
       loading.value = false
     })
-    const requests = computed(() => store.getters['request/requests'])
+
+    const requests = computed(() => store.getters['request/requests']
+      .filter(request => {
+        if (filter.value.name) {
+          return request.fio.toLowerCase().includes(filter.value.name.toLowerCase())
+        }
+        return request
+      })
+      .filter(request => {
+        if (filter.value.status) {
+          return filter.value.status === request.status
+        }
+        return request
+      })
+    )
 
     return {
-      modal, requests, loading
+      modal, requests, loading, filter
     }
   },
 }
