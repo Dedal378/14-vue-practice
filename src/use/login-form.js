@@ -1,6 +1,6 @@
-import { useField, useForm } from "vee-validate";
-import * as yup from "yup";
-import { computed, watch } from "vue";
+import { useField, useForm } from "vee-validate"
+import * as yup from "yup"
+import { computed, watch } from "vue"
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
 

@@ -1,7 +1,7 @@
 <template>
   <div class="filter">
     <div class="form-control">
-      <input type="text" placeholder="Начните писать имя" v-model="name">
+      <input v-model="name" type="text" placeholder="Начните писать имя" >
     </div>
 
     <div class="form-control">
@@ -14,7 +14,7 @@
       </select>
     </div>
 
-    <button class="btn warning" v-if="isActive" @click="reset">Очистить</button>
+    <button v-if="isActive" @click="reset" class="btn warning">Очистить</button>
   </div>
 </template>
 
@@ -23,11 +23,11 @@ import { computed, ref, watch } from "vue";
 
 export default {
   name: "RequestFilter",
-  emits: ['update:modelValue'],
   props: ['modelValue'],
+  emits: ['update:modelValue'],
   setup(_, { emit }) {
-    const name = ref()
-    const status = ref()
+    const name = ref(null)
+    const status = ref(null)
 
     watch([name, status], values => {
       emit('update:modelValue', {

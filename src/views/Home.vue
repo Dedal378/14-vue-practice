@@ -1,7 +1,7 @@
 <template>
   <app-loader v-if="loading" />
 
-  <app-page title="Список заявок" v-else>
+  <app-page v-else title="Список заявок">
     <template #header>
       <button @click="modal = true" class="btn primary">
         Создать

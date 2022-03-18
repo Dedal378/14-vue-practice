@@ -1,10 +1,10 @@
 <template>
-  <component :is="layout + '-layout'" v-if="layout" />
+  <component v-if="layout" :is="layout + '-layout'" />
 </template>
 
 <script>
 import { useRoute } from 'vue-router'
-import { computed } from "vue"
+import { computed } from 'vue'
 import AuthLayout from '@/layout/AuthLayout'
 import MainLayout from '@/layout/MainLayout'
 
